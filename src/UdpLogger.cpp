@@ -5,53 +5,53 @@
 /**
  * constructors
  */
-UdpLoggerClass::UdpLoggerClass()
+UdpLogger::UdpLogger()
 {
     _port = 12345;
 }
 
-UdpLoggerClass::UdpLoggerClass(int port)
+UdpLogger::UdpLogger(int port)
 {
     _port = port;
 }
 
-UdpLoggerClass::UdpLoggerClass(const char* prefix, int port)
+UdpLogger::UdpLogger(const char* prefix, int port)
 {
     _port = port;
     _prefix = prefix;
     _current = prefix;
 }
 
-void UdpLoggerClass::WriteStartMessage()
+void UdpLogger::WriteStartMessage()
 {
     println("Logging");
 }
 
-void UdpLoggerClass::print(int number)
+void UdpLogger::print(int number)
 {
     char buffer[33];
     itoa(number, buffer, 10);
     print(buffer);
 }
 
-void UdpLoggerClass::print(String message)
+void UdpLogger::print(String message)
 {
     _current += message;
 }
 
-void UdpLoggerClass::println(String message)
+void UdpLogger::println(String message)
 {
     print(message);
     transmit();
 }
 
-void UdpLoggerClass::println(int number)
+void UdpLogger::println(int number)
 {
     print(number);
     transmit();
 }
 
-void UdpLoggerClass::transmit()
+void UdpLogger::transmit()
 {
     _udp.beginPacket("255.255.255.255", _port);
     _udp.write(_current.c_str());

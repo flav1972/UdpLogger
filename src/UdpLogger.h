@@ -1,11 +1,14 @@
 #include "WiFiUdp.h"
 
-class UdpLoggerClass
+#ifndef _UDPLOGGER_H_
+#define _UDPLOGGER_H_
+
+class UdpLogger
 {
     public:
-        UdpLoggerClass();
-        UdpLoggerClass(int port);
-        UdpLoggerClass(const char* prefix, int port = 12345);
+        UdpLogger();
+        UdpLogger(int port);
+        UdpLogger(const char* prefix, int port = 12345);
 
         void WriteStartMessage();
         void print(int number);
@@ -22,3 +25,5 @@ class UdpLoggerClass
         String _current;
         String _prefix; 
 };
+
+#endif
