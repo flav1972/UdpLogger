@@ -20,9 +20,9 @@ When calling init(), you can pass both the port and a "message prefix" string; t
 
 #include "UdpLogger.h"
 
-UdpLogger.init(12345, "LandscapeController: ");  // Do this in setup...
+logger = UdpLogger("LandscapeController: ", 12345);  // Do this in setup...
 
-UdpLogger.println("Here is my message");
+logger.println("Here is my message");
 
 # Viewers
 
