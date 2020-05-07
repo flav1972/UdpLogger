@@ -18,11 +18,15 @@ When calling init(), you can pass both the port and a "message prefix" string; t
 
 # Example
 
-#include "UdpLogger.h"
+    #include <UdpLogger.h>
 
-logger = UdpLogger("LandscapeController: ", 12345);  // Do this in setup...
+    UdpLogger logger;
 
-logger.println("Here is my message");
+    logger = UdpLogger("LandscapeController: ");  // Do this in setup... defaut port 12345
+    // or
+    logger = UdpLogger("LandscapeController: ", 5678); // some other port
+
+    logger.println("Here is my message");
 
 # Viewers
 
@@ -30,3 +34,4 @@ Any program that can view UDP messages will work. Wireshark is a common one.
 
 If you want a simple (very simple) one, see https://github.com/ericgu/UdpMonitor
 
+Or you can use listenUdp.py python example listener
