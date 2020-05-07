@@ -2,67 +2,23 @@
 
 class UdpLoggerClass
 {
-    WiFiUDP _udp;
-    int _port;
-    String _current;
-    String _prefix; 
-
     public:
-        UdpLoggerClass()
-        {
-            _port = 12345;
-        }
+        UdpLoggerClass();
+        UdpLoggerClass(int port);
+        UdpLoggerClass(const char* prefix, int port = 12345);
 
-        void init(int port)
-        {
-            _port = port;
-        }
+        void WriteStartMessage();
+        void print(int number);
+        void print(String message);
+        void println(String message);
+        void println(int number);
 
-        void init(int port, const char* prefix)
-        {
-            _port = port;
-            _prefix = prefix;
-            _current = prefix;
-        }
+    private:
+        void transmit();
 
-        void WriteStartMessage()
-        {
-            println("Logging");
-        }
-
-        void print(int number)
-        {
-            char buffer[33];
-            itoa(number, buffer, 10);
-            print(buffer);
-        }
-
-        void print(String message)
-        {
-            _current += message;
-        }
-
-        void println(String message)
-        {
-            print(message);
-
-            transmit();
-        }
-
-        void println(int number)
-        {
-            print(number);
-
-            transmit();
-        }
-
-        void transmit()
-        {
-            _udp.beginPacket("255.255.255.255", _port);
-            _udp.write(_current.c_str());
-            _udp.endPacket();
-            _current = _prefix;
-        }
+    protected:
+        WiFiUDP _udp;
+        int _port;
+        String _current;
+        String _prefix; 
 };
-
-UdpLoggerClass UdpLogger;
