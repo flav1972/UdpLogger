@@ -12,6 +12,7 @@ class UdpLogger
 
         void WriteStartMessage();
         void print(int number);
+        void print(char c);
         void print(String message);
         void println(String message);
         void println(int number);

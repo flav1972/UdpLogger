@@ -34,6 +34,11 @@ void UdpLogger::print(int number)
     print(buffer);
 }
 
+void UdpLogger::print(char c)
+{
+    _current += c;
+}
+
 void UdpLogger::print(String message)
 {
     _current += message;
